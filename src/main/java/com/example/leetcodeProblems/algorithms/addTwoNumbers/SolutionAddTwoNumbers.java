@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import io.vavr.Function1;
 import io.vavr.Function2;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Service
 public class SolutionAddTwoNumbers {
     public List<Integer> addTwoNumbers(List<Integer> l1, List<Integer> l2) {
         return sumIntegetFromString()
-                .andThen(conver())
+                .andThen(convertStringToArray())
                 .apply(getStringFromArray(l1), getStringFromArray(l2));
     }
 
@@ -27,7 +30,7 @@ public class SolutionAddTwoNumbers {
         return (x, y) -> String.valueOf(Integer.parseInt(x) + Integer.parseInt(y));
     }
 
-    private Function1<String, List<Integer>> conver() {
+    private Function1<String, List<Integer>> convertStringToArray() {
         return row -> {
             List<Integer> resultArray = new ArrayList<>();
             for (int i = 0; i < row.length(); i++) {
